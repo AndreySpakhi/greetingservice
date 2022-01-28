@@ -1,0 +1,16 @@
+{% extends 'greetings/base.html' %}
+
+{% block title %}
+Відвідувачі
+{% endblock %}
+
+{% block content %}
+    <div align="center">
+        <h1>Вже привіталися</h1>
+        {% for user in users_list %}
+            {{user.first_name}} {{user.last_name}}
+        <br>
+        {% endfor %}
+    </div>
+{% endblock %}
+

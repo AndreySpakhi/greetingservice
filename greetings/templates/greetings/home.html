@@ -1,0 +1,19 @@
+{% extends 'greetings/base.html' %}
+
+{% block title %}
+Головна сторінка
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div align="center">
+            {{ form.first_name }}<br><br>
+            {{ form.last_name }}<br><br>
+            {{ form.user_email }}<br><br>
+            <input type="submit" value="Привітатись"><br><br>
+            <span>{{ error }}</span>
+        </div>
+    </form>
+{% endblock %}
+
