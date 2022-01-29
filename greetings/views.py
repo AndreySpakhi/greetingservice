@@ -16,7 +16,7 @@ def home(request):
                 return render(request, 'greetings/greeting.html',
                               {'user': form['user_email'].value(), 'greetings': 'Привіт, '})
         else:
-            error = 'Форма заповнена некоректно'
+            error = 'Форма заповнена некоректно, перевірте правильність написання email адреси'
     form = UserForm()
     context = {
         'form': form,

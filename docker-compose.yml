@@ -3,17 +3,22 @@ version: "3.9"
 services:
   db:
     image: postgres
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
+    container_name: db
+    restart: always
     environment:
-      - POSTGRES_NAME=django_greet
+      - POSTGRES_DB=django_greet
       - POSTGRES_USER=django_user
       - POSTGRES_PASSWORD=django_user
+    ports:
+      - "5432:5432"
   greetingservice:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - .:/code
+      - .:/greetingservice
     ports:
       - "8000:8000"
     environment:
