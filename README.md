@@ -2,6 +2,7 @@
 ____
 
 #### Docker Compose version v2.2.3
+#### Django 4.0.1
 #### Python 3.9.0
 #### PostgreSQL 14.1
 ____
