@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import User
 from .forms import UserForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def home(request):
@@ -27,5 +28,13 @@ def home(request):
 
 def greeted(request):
     users_list = User.objects.all()
-    return render(request, 'greetings/greeted.html', {'users_list': users_list})
+    paginator = Paginator(users_list, 3)
+    page = request.GET.get('page')
+    try:
+        visitors = paginator.page(page)
+    except PageNotAnInteger:
+        visitors = paginator.page(1)
+    except EmptyPage:
+        visitors = paginator.page(paginator.num_pages)
+    return render(request, 'greetings/greeted.html', {'page': page, 'visitors': visitors})
 

@@ -7,10 +7,14 @@
 {% block content %}
     <div align="center">
         <h1>Вже привіталися</h1>
-        {% for user in users_list %}
+        {% for user in visitors %}
             {{user.first_name}} {{user.last_name}}
         <br>
         {% endfor %}
+
+    </div>
+    <div>
+        {% include "./pagination.html" with page=visitors %}
     </div>
 {% endblock %}
 
